@@ -7,6 +7,7 @@ interface SiteSettings {
   id: number;
   email: string;
   phone: string;
+  phone2: string | null; // Added phone2
   address: string;
   contactTitleEn: string;
   contactTitleTr: string;
@@ -273,6 +274,15 @@ export default function SettingsForm({ settings }: { settings: SiteSettings }) {
               type="text" 
               name="phone" 
               defaultValue={settings.phone}
+              className="w-full p-4 bg-white border border-black/10 focus:border-[#D4AF37] outline-none transition-colors"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-bold uppercase tracking-wider text-gray-500 mb-2">Phone Number 2</label>
+            <input 
+              type="text" 
+              name="phone2" 
+              defaultValue={settings.phone2 || ''}
               className="w-full p-4 bg-white border border-black/10 focus:border-[#D4AF37] outline-none transition-colors"
             />
           </div>

@@ -265,6 +265,7 @@ export async function deletePortfolioImage(imageId: number) {
 export async function updateSiteSettings(formData: FormData) {
   const email = formData.get('email') as string;
   const phone = formData.get('phone') as string;
+  const phone2 = formData.get('phone2') as string; // Added phone2
   const address = formData.get('address') as string;
 
   const contactTitleEn = formData.get('contactTitleEn') as string;
@@ -335,6 +336,7 @@ export async function updateSiteSettings(formData: FormData) {
     data: {
       email,
       phone,
+      phone2, // Added phone2
       address,
       contactTitleEn,
       contactTitleTr,

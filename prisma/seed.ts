@@ -470,6 +470,7 @@ async function main() {
     create: {
       email: 'info@brnyapigroup.com',
       phone: '+90 (212) 000 00 00',
+      phone2: '+90 (555) 000 00 00', // Added second phone number
       address: 'İstanbul, Türkiye',
       contactTitleTr: 'İletişime Geçin',
       contactTitleEn: 'Get in Touch',

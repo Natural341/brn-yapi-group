@@ -8,6 +8,7 @@ import { submitContactForm } from '@/app/contact/actions';
 interface SiteSettings {
   email: string;
   phone: string;
+  phone2?: string | null; // Added phone2
   address: string;
   contactTitleEn: string;
   contactTitleTr: string;
@@ -43,6 +44,7 @@ const Contact: React.FC<{ siteSettings?: SiteSettings }> = ({ siteSettings }) =>
   const address = siteSettings?.address || "Zorlu Center, Level 5 \n Istanbul, Turkey";
   const email = siteSettings?.email || "info@brnyapigroup.com";
   const phone = siteSettings?.phone || "+90 (212) 000 00 00";
+  const phone2 = siteSettings?.phone2;
   
   const mainTitleHtml = siteSettings ? (lang === 'tr' ? siteSettings.contactMainTitleTr : siteSettings.contactMainTitleEn) : null;
   const defaultMainTitle = lang === 'tr' 
@@ -89,6 +91,9 @@ const Contact: React.FC<{ siteSettings?: SiteSettings }> = ({ siteSettings }) =>
                 <div className="flex flex-col space-y-2">
                   <a href={`mailto:${email}`} className="text-lg font-serif text-white/90 hover:text-[#D4AF37] transition-colors">{email}</a>
                   <a href={`tel:${phone.replace(/\s/g, '')}`} className="text-lg font-serif text-white/90 hover:text-[#D4AF37] transition-colors">{phone}</a>
+                  {phone2 && (
+                    <a href={`tel:${phone2.replace(/\s/g, '')}`} className="text-lg font-serif text-white/90 hover:text-[#D4AF37] transition-colors">{phone2}</a>
+                  )}
                 </div>
               </div>
             </div>
