@@ -1,0 +1,37 @@
+{
+  "name": "brn-yapi-group---excellence-in-construction",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "postinstall": "prisma generate"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "5.22.0",
+    "bcryptjs": "^3.0.3",
+    "next": "^16.0.10",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^22.14.0",
+    "autoprefixer": "^10.4.23",
+    "dotenv": "^17.2.3",
+    "postcss": "^8.5.6",
+    "prisma": "5.22.0",
+    "tailwindcss": "^4.1.18",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2"
+  }
+}

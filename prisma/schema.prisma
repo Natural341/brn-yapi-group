@@ -1,0 +1,136 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model PortfolioItem {
+  id          Int      @id @default(autoincrement())
+  titleEn     String
+  titleTr     String
+  descriptionEn String   @db.Text
+  descriptionTr String   @db.Text
+  imageUrl    String?
+  images      PortfolioImage[]
+  category    String? // Keep for legacy or manual override
+  serviceId   Int?
+  service     Service? @relation(fields: [serviceId], references: [id])
+  location    String?
+  year        String?
+  client      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PortfolioImage {
+  id          Int           @id @default(autoincrement())
+  url         String
+  portfolioId Int
+  portfolio   PortfolioItem @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  phone     String?  // Added phone number
+  service   String
+  message   String   @db.Text
+  createdAt DateTime @default(now())
+}
+
+model Newsletter {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model Service {
+  id            Int      @id @default(autoincrement())
+  slug          String   @unique
+  icon          String
+  imageUrl      String?
+  titleTr       String
+  titleEn       String
+  descriptionTr String   @db.Text
+  descriptionEn String   @db.Text
+  contentTr     String   @db.Text
+  contentEn     String   @db.Text
+  
+  // Portfolio Section on Service Detail Page
+  servicePortfolioTitleEn String?
+  servicePortfolioTitleTr String?
+  servicePortfolioDescEn  String? @db.Text
+  servicePortfolioDescTr  String? @db.Text
+  
+  portfolioItems PortfolioItem[]
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model SiteSettings {
+  id             Int      @id @default(autoincrement())
+  // Contact
+  email          String
+  phone          String
+  address        String
+  contactTitleTr String
+  contactTitleEn String
+  contactDescTr  String   @db.Text
+  contactDescEn  String   @db.Text
+  
+  // Hero Section
+  heroTitleTr    String
+  heroTitleEn    String
+  heroSubtitleTr String
+  heroSubtitleEn String
+
+  // About Section
+  aboutTitleTr   String
+  aboutTitleEn   String
+  aboutDescTr    String   @db.Text
+  aboutDescEn    String   @db.Text
+  aboutSectionTitleEn String? // "Our Philosophy"
+  aboutSectionTitleTr String?
+
+  // Contact Section (Let's Build...)
+  contactMainTitleEn String? @db.Text
+  contactMainTitleTr String? @db.Text
+
+  // Portfolio Section (Homepage)
+  portfolioTitleEn    String? // "Our Portfolio"
+  portfolioTitleTr    String?
+  portfolioSubtitleEn String? // "Selected Works"
+  portfolioSubtitleTr String?
+  portfolioDescEn     String? @db.Text // "Each project..."
+  portfolioDescTr     String? @db.Text
+
+  // Footer
+  footerRightsTr String
+  footerRightsEn String
+
+  // Social Media
+  instagram      String?
+  linkedin       String?
+  twitter        String?
+  facebook       String?
+
+  // Hero Image
+  heroImageUrl   String?
+  
+  // Admin Credentials
+  adminUsername  String   @default("admin")
+  adminPassword  String   @default("123")
+
+  // SEO Settings
+  seoTitle       String?
+  seoDescription String?  @db.Text
+  seoKeywords    String?  @db.Text
+  ogImage        String?
+
+  updatedAt      DateTime @updatedAt
+}
