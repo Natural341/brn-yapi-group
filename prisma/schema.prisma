@@ -135,3 +135,14 @@ model SiteSettings {
 
   updatedAt      DateTime @updatedAt
 }
+
+model Sponsor {
+  id        Int      @id @default(autoincrement())
+  name      String
+  type      String   @default("TEXT") // "IMAGE" or "TEXT"
+  content   String   @db.Text // Image URL or Text content
+  url       String?  // Optional link
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

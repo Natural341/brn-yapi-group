@@ -37,6 +37,9 @@ export default function AdminLayout({
           <Link href="/admin/newsletter" className="block px-4 py-3 rounded hover:bg-white/10 transition-colors">
             Newsletter
           </Link>
+          <Link href="/admin/sponsors" className="block px-4 py-3 rounded hover:bg-white/10 transition-colors">
+            Sponsors
+          </Link>
           <Link href="/admin/seo" className="block px-4 py-3 rounded hover:bg-white/10 transition-colors text-[#D4AF37]">
             🔍 SEO Yönetimi
           </Link>

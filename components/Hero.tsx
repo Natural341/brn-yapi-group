@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { TRANSLATIONS } from '../constants';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -11,11 +12,15 @@ interface SiteSettings {
   heroImageUrl: string | null;
 }
 
-const Hero: React.FC<{ siteSettings?: SiteSettings }> = ({ siteSettings }) => {
+interface HeroImage {
+  src: string;
+  slug: string;
+}
+
+const Hero: React.FC<{ siteSettings?: SiteSettings; sponsors?: any[]; heroImages?: HeroImage[] }> = ({ siteSettings, heroImages = [] }) => {
   const { lang } = useLanguage();
   const t = TRANSLATIONS.hero;
   const [scrollY, setScrollY] = useState(0);
-
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -24,6 +29,41 @@ const Hero: React.FC<{ siteSettings?: SiteSettings }> = ({ siteSettings }) => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const row1Images = heroImages.filter((_, i) => i % 2 === 0);
+  const row2Images = heroImages.filter((_, i) => i % 2 !== 0);
+
+  /* Refined Marquee Row: Seamless Loop */
+  const MarqueeRow = ({ items, reverse = false }: { items: HeroImage[], reverse?: boolean }) => {
+
+    // Create TWO large identical sets to form the seamless loop.
+    // The animation moves from 0% -> -50%.
+    // So visual Set A (0-50%) is replaced by Set B (50-100%).
+
+    const baseSet = [...items, ...items, ...items, ...items, ...items, ...items]; // Enough reps to cover screen
+    const masterList = [...baseSet, ...baseSet]; // Two big sets for the 50% loop
+
+    return (
+      <div className="flex overflow-hidden w-full relative">
+        <div
+          className={`flex items-center gap-8 ${reverse ? 'animate-marquee-seamless-reverse' : 'animate-marquee-seamless'}`}
+          style={{
+            animationDuration: '1000s' // Long duration for ultra-slow move
+          }}
+        >
+          {masterList.map((item, index) => (
+            <Link
+              key={`hero-img-${index}`}
+              href={`/services/${item.slug}`}
+              className="relative w-52 h-32 flex-shrink-0 bg-transparent shadow-xl transition-transform duration-700 hover:scale-110 rounded-2xl overflow-hidden border border-white/5 group cursor-pointer z-10"
+            >
+              <img src={item.src} alt="Hero Gallery" className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300" />
+            </Link>
+          ))}
+        </div>
+      </div>
+    );
+  };
 
   const defaultTitle = lang === 'tr'
     ? <>Yaşamı <span className="italic font-light text-[#D4AF37]">Sanata</span><br /> Dönüştürüyoruz.</>
@@ -36,55 +76,51 @@ const Hero: React.FC<{ siteSettings?: SiteSettings }> = ({ siteSettings }) => {
   ) : defaultTitle;
 
   const subtitle = siteSettings ? (lang === 'tr' ? siteSettings.heroSubtitleTr : siteSettings.heroSubtitleEn) : "Mükemmelliğin Mimarisi";
-  const imageUrl = siteSettings?.heroImageUrl || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000";
 
   return (
-    <section className="relative min-h-screen flex items-center justify-start overflow-hidden bg-[#0F0F0F]">
-      {/* Background with Parallax & Deep Overlay */}
-      <div
-        className="absolute inset-0 z-0 scale-110"
-        style={{ transform: `translateY(${scrollY * 0.3}px)` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent z-10"></div>
-        <img
-          src={imageUrl}
-          alt="Premium Architecture"
-          className="w-full h-full object-cover transition-transform duration-[2s]"
-        />
+    // Background: Smooth dark gradient
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#111] to-black pt-20">
+
+      {/* Global Top "Light Play" Overlay */}
+      <div className="absolute top-0 left-0 w-full h-[600px] bg-gradient-to-b from-black via-black/40 to-transparent z-10 pointer-events-none"></div>
+
+      {/* Diagonal Film Roll Container */}
+      <div className="absolute inset-0 flex flex-col justify-center items-center z-0 transform -rotate-[3deg] scale-125 opacity-40 blur-[1px] translate-y-64 pointer-events-none will-change-transform">
+
+        <div className="w-full flex overflow-hidden mb-4 pl-12 pointer-events-auto">
+          <MarqueeRow items={row1Images} />
+        </div>
+        <div className="w-full flex overflow-hidden mb-4 pointer-events-auto">
+          <MarqueeRow items={row2Images} reverse={true} />
+        </div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 relative z-20 text-white flex flex-col py-20 md:py-28 lg:py-32">
-        <div className={`max-w-4xl lg:max-w-6xl relative pl-6 sm:pl-8 md:pl-12 border-l-4 md:border-l-8 border-[#D4AF37] transition-all duration-1000 ease-out transform ${isMounted ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+      {/* Content Overlay */}
+      <div className="container mx-auto px-4 z-20 relative text-center flex flex-col items-center justify-center -mt-60 pointer-events-none">
 
-          {/* Top Detail */}
-          <div className="overflow-hidden mb-6 md:mb-8">
-            <h2 className="text-[#D4AF37] uppercase tracking-[0.4em] md:tracking-[0.6em] font-black text-xs sm:text-sm md:text-base flex items-center gap-4">
-              <span className="w-8 h-[2px] bg-[#D4AF37]"></span>
-              {subtitle}
-            </h2>
-          </div>
+        {/* Subtitle */}
+        <h2 className={`text-[#D4AF37] uppercase tracking-[0.4em] font-bold text-xs sm:text-sm mb-6 transition-all duration-700 ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          {subtitle}
+        </h2>
 
-          {/* Main Title - Balanced Typography */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-black leading-[1.08] mb-8 sm:mb-10 md:mb-14 tracking-tight text-white drop-shadow-2xl">
-            {title}
-          </h1>
+        {/* Main Title */}
+        <h1 className={`text-5xl sm:text-6xl md:text-8xl font-serif font-black leading-tight mb-12 text-white drop-shadow-2xl transition-all duration-700 delay-100 ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          {title}
+        </h1>
 
-          {/* Call to Actions */}
-          <div className={`flex flex-col sm:flex-row gap-4 sm:gap-6 md:gap-8 transition-all duration-1000 delay-500 transform ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <a href="#services" className="px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 bg-[#D4AF37] text-black font-black uppercase tracking-[0.2em] md:tracking-[0.25em] text-[10px] sm:text-[11px] md:text-sm hover:bg-white hover:scale-105 transition-all duration-300 text-center shadow-lg shadow-[#D4AF37]/20">
-              {t.cta[lang]}
-            </a>
-            <a href="#contact" className="px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 border border-white/30 bg-white/5 backdrop-blur-sm text-white font-black uppercase tracking-[0.2em] md:tracking-[0.25em] text-[10px] sm:text-[11px] md:text-sm transition-all duration-300 flex items-center justify-center gap-3 group hover:bg-white hover:text-black hover:border-white">
-              {lang === 'tr' ? 'İletişime Geçin' : 'Contact Us'}
-              <span className="transform group-hover:translate-x-2 transition-transform duration-300">→</span>
-            </a>
-          </div>
-
+        {/* Buttons */}
+        <div className={`flex flex-col sm:flex-row gap-6 justify-center items-center transition-all duration-700 delay-200 transform pointer-events-auto ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <a href="#services" className="px-10 py-4 bg-[#D4AF37] text-black font-black uppercase tracking-[0.25em] text-xs hover:bg-white hover:scale-105 transition-all duration-300 shadow-xl shadow-[#D4AF37]/20">
+            {t.cta[lang]}
+          </a>
+          <a href="#contact" className="px-10 py-4 border border-white/30 bg-black/40 backdrop-blur-md text-white font-black uppercase tracking-[0.25em] text-xs transition-all duration-300 hover:bg-white hover:text-black">
+            {lang === 'tr' ? 'İletişime Geçin' : 'Contact Us'}
+          </a>
         </div>
       </div>
 
       {/* Scroll Hint */}
-      <div className={`absolute bottom-12 left-12 z-20 flex items-center space-x-6 opacity-60 transition-all duration-1000 delay-1000 ${isMounted ? 'opacity-60 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <div className={`absolute bottom-12 left-12 z-20 flex items-center space-x-6 opacity-60 transition-all duration-400 delay-400 ${isMounted ? 'opacity-60 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-white hidden md:block">Scroll Down</span>
         <div className="w-16 h-[2px] bg-[#D4AF37] animate-pulse"></div>
       </div>

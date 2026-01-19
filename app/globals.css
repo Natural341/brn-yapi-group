@@ -6,10 +6,10 @@
   --font-serif: var(--font-playfair);
   --font-sans: var(--font-montserrat);
   --font-display: var(--font-cinzel);
-  
+
   --color-gold: #D4AF37;
   --color-gold-light: #F2D388;
-  
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 }
@@ -49,7 +49,7 @@ html {
 }
 
 .light-shadow {
-  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
 }
 
 .btn-premium {
@@ -66,10 +66,48 @@ html {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   transition: all 0.5s;
 }
 
 .btn-premium:hover::after {
   left: 100%;
+}
+
+/* Marquee Animations */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee-seamless {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee-seamless {
+  animation: marquee-seamless 25s linear infinite;
+  /* Will override duration inline */
+}
+
+.animate-marquee-seamless-reverse {
+  animation: marquee-seamless 25s linear infinite reverse;
+}
+
+.animate-marquee-reverse {
+  animation: marquee 25s linear infinite reverse;
 }

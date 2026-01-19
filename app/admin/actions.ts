@@ -376,7 +376,7 @@ export async function updateSiteSettings(formData: FormData) {
     });
   } else {
     // Fallback: If no settings exist, create one (though seed should have handled this)
-     await prisma.siteSettings.create({
+    await prisma.siteSettings.create({
       data: {
         email,
         phone,
@@ -426,4 +426,109 @@ export async function deleteMessage(id: number) {
     where: { id },
   });
   revalidatePath('/admin/messages');
+}
+
+// Sponsor Actions
+export async function createSponsor(formData: FormData) {
+  const name = formData.get('name') as string;
+  const type = formData.get('type') as string; // "IMAGE" or "TEXT"
+  const url = formData.get('url') as string;
+  const contentFile = formData.get('contentFile') as File;
+  const contentText = formData.get('contentText') as string;
+
+  let content = contentText;
+
+  if (type === 'IMAGE' && contentFile && contentFile.size > 0) {
+    const bytes = await contentFile.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const filename = contentFile.name.replace(/\.[^/.]+$/, "") + '-' + uniqueSuffix + '.' + contentFile.name.split('.').pop();
+    const uploadDir = join(process.cwd(), 'public', 'uploads');
+    const filePath = join(uploadDir, filename);
+    await writeFile(filePath, buffer);
+    content = `/uploads/${filename}`;
+  }
+
+  await prisma.sponsor.create({
+    data: {
+      name,
+      type,
+      content,
+      url,
+      isActive: true,
+    },
+  });
+
+  revalidatePath('/');
+  revalidatePath('/admin/sponsors');
+  redirect('/admin/sponsors');
+}
+
+export async function updateSponsor(id: number, formData: FormData) {
+  const name = formData.get('name') as string;
+  const type = formData.get('type') as string;
+  const url = formData.get('url') as string;
+  const contentFile = formData.get('contentFile') as File;
+  const contentText = formData.get('contentText') as string;
+  const isActive = formData.get('isActive') === 'true';
+
+  let content = contentText;
+
+  // If Image type and new file provided, upload it
+  if (type === 'IMAGE' && contentFile && contentFile.size > 0) {
+    const bytes = await contentFile.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const filename = contentFile.name.replace(/\.[^/.]+$/, "") + '-' + uniqueSuffix + '.' + contentFile.name.split('.').pop();
+    const uploadDir = join(process.cwd(), 'public', 'uploads');
+    const filePath = join(uploadDir, filename);
+    await writeFile(filePath, buffer);
+    content = `/uploads/${filename}`;
+  } else if (type === 'IMAGE' && !contentFile) {
+    // If keeping existing image, content is already set (need to handle this in form hidden input or logic)
+    // Actually, typical flow is: if file not provided, keep old value?
+    // We can just query old value if not provided, OR pass the old value in a hidden field.
+    // For simplicity here, let's assume if it's null on update, we don't update this field unless we query it.
+    // Better approach: fetch current to preserve if needed, or rely on form sending old value if text.
+    // Since this is FormData, we need to know if we are "keeping" or "replacing".
+    // If contentText is provided (e.g. from hidden input), we use it.
+  }
+
+  // NOTE: Simple partial update logic
+  const data: any = {
+    name,
+    type,
+    url,
+    isActive,
+  };
+
+  if (content) {
+    data.content = content;
+  }
+
+  await prisma.sponsor.update({
+    where: { id },
+    data,
+  });
+
+  revalidatePath('/');
+  revalidatePath('/admin/sponsors');
+  redirect('/admin/sponsors');
+}
+
+export async function deleteSponsor(id: number) {
+  await prisma.sponsor.delete({
+    where: { id },
+  });
+  revalidatePath('/');
+  revalidatePath('/admin/sponsors');
+}
+
+export async function toggleSponsorStatus(id: number, isActive: boolean) {
+  await prisma.sponsor.update({
+    where: { id },
+    data: { isActive }
+  });
+  revalidatePath('/');
+  revalidatePath('/admin/sponsors');
 }
