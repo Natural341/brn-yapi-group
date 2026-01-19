@@ -11,8 +11,8 @@ model PortfolioItem {
   id          Int      @id @default(autoincrement())
   titleEn     String
   titleTr     String
-  descriptionEn String   @db.Text
-  descriptionTr String   @db.Text
+  descriptionEn String  
+  descriptionTr String  
   imageUrl    String?
   images      PortfolioImage[]
   category    String? // Keep for legacy or manual override
@@ -38,7 +38,7 @@ model Message {
   email     String
   phone     String?  // Added phone number
   service   String
-  message   String   @db.Text
+  message   String  
   createdAt DateTime @default(now())
 }
 
@@ -55,16 +55,16 @@ model Service {
   imageUrl      String?
   titleTr       String
   titleEn       String
-  descriptionTr String   @db.Text
-  descriptionEn String   @db.Text
-  contentTr     String   @db.Text
-  contentEn     String   @db.Text
+  descriptionTr String  
+  descriptionEn String  
+  contentTr     String  
+  contentEn     String  
   
   // Portfolio Section on Service Detail Page
   servicePortfolioTitleEn String?
   servicePortfolioTitleTr String?
-  servicePortfolioDescEn  String? @db.Text
-  servicePortfolioDescTr  String? @db.Text
+  servicePortfolioDescEn  String?
+  servicePortfolioDescTr  String?
   
   portfolioItems PortfolioItem[]
 
@@ -81,8 +81,8 @@ model SiteSettings {
   address        String
   contactTitleTr String
   contactTitleEn String
-  contactDescTr  String   @db.Text
-  contactDescEn  String   @db.Text
+  contactDescTr  String  
+  contactDescEn  String  
   
   // Hero Section
   heroTitleTr    String
@@ -93,22 +93,22 @@ model SiteSettings {
   // About Section
   aboutTitleTr   String
   aboutTitleEn   String
-  aboutDescTr    String   @db.Text
-  aboutDescEn    String   @db.Text
+  aboutDescTr    String  
+  aboutDescEn    String  
   aboutSectionTitleEn String? // "Our Philosophy"
   aboutSectionTitleTr String?
 
   // Contact Section (Let's Build...)
-  contactMainTitleEn String? @db.Text
-  contactMainTitleTr String? @db.Text
+  contactMainTitleEn String?
+  contactMainTitleTr String?
 
   // Portfolio Section (Homepage)
   portfolioTitleEn    String? // "Our Portfolio"
   portfolioTitleTr    String?
   portfolioSubtitleEn String? // "Selected Works"
   portfolioSubtitleTr String?
-  portfolioDescEn     String? @db.Text // "Each project..."
-  portfolioDescTr     String? @db.Text
+  portfolioDescEn     String? // "Each project..."
+  portfolioDescTr     String?
 
   // Footer
   footerRightsTr String
@@ -129,8 +129,8 @@ model SiteSettings {
 
   // SEO Settings
   seoTitle       String?
-  seoDescription String?  @db.Text
-  seoKeywords    String?  @db.Text
+  seoDescription String? 
+  seoKeywords    String? 
   ogImage        String?
 
   updatedAt      DateTime @updatedAt
@@ -140,7 +140,7 @@ model Sponsor {
   id        Int      @id @default(autoincrement())
   name      String
   type      String   @default("TEXT") // "IMAGE" or "TEXT"
-  content   String   @db.Text // Image URL or Text content
+  content   String   // Image URL or Text content
   url       String?  // Optional link
   isActive  Boolean  @default(true)
   createdAt DateTime @default(now())
