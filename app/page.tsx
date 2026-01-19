@@ -13,16 +13,19 @@ export const dynamic = 'force-dynamic';
 
 export default async function Home() {
   // Fetch up to 6 latest projects for the homepage
-  const projects = await prisma.portfolioItem.findMany({
-    take: 6,
-    orderBy: { createdAt: 'desc' }
-  });
+  // const projects = await prisma.portfolioItem.findMany({
+  //   take: 6,
+  //   orderBy: { createdAt: 'desc' }
+  // });
+  const projects: any[] = [];
 
-  const services = await prisma.service.findMany({
-    orderBy: { id: 'asc' }
-  });
+  // const services = await prisma.service.findMany({
+  //   orderBy: { id: 'asc' }
+  // });
+  const services: any[] = [];
 
   // Swap "Altın Varak" and "Kırım" positions as requested
+  /*
   const varakIndex = services.findIndex(s => s.slug === 'altin-varak');
   const kirimIndex = services.findIndex(s => s.slug === 'kirim-yikim-isleri');
   if (varakIndex !== -1 && kirimIndex !== -1) {
@@ -30,14 +33,17 @@ export default async function Home() {
     services[varakIndex] = services[kirimIndex];
     services[kirimIndex] = temp;
   }
+  */
 
-  const siteSettings = (await prisma.siteSettings.findFirst()) || undefined;
+  // const siteSettings = (await prisma.siteSettings.findFirst()) || undefined;
+  const siteSettings = undefined;
 
   /* New: Fetch Active Sponsors */
-  const sponsors = await prisma.sponsor.findMany({
-    where: { isActive: true },
-    orderBy: { createdAt: 'desc' }
-  });
+  // const sponsors = await prisma.sponsor.findMany({
+  //   where: { isActive: true },
+  //   orderBy: { createdAt: 'desc' }
+  // });
+  const sponsors: any[] = [];
 
   /* Retrieve images directly from storage for maximum variety */
   const fs = require('fs');
