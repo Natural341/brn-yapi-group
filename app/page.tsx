@@ -12,17 +12,16 @@ import Footer from '@/components/Footer';
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  // Fetch up to 6 latest projects for the homepage
   // const projects = await prisma.portfolioItem.findMany({
   //   take: 6,
   //   orderBy: { createdAt: 'desc' }
   // });
   const projects: any[] = [];
 
-  // const services = await prisma.service.findMany({
-  //   orderBy: { id: 'asc' }
-  // });
-  const services: any[] = [];
+  const services = await prisma.service.findMany({
+    orderBy: { id: 'asc' }
+  });
+  // const services: any[] = [];
 
   // Swap "Altın Varak" and "Kırım" positions as requested
   /*
@@ -35,8 +34,8 @@ export default async function Home() {
   }
   */
 
-  // const siteSettings = (await prisma.siteSettings.findFirst()) || undefined;
-  const siteSettings = undefined;
+  const siteSettings = (await prisma.siteSettings.findFirst()) || undefined;
+  // const siteSettings = undefined;
 
   /* New: Fetch Active Sponsors */
   // const sponsors = await prisma.sponsor.findMany({

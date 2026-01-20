@@ -3,16 +3,16 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:/tmp/dev.db"
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model PortfolioItem {
   id          Int      @id @default(autoincrement())
   titleEn     String
   titleTr     String
-  descriptionEn String  
-  descriptionTr String  
+  descriptionEn String   @db.Text
+  descriptionTr String   @db.Text
   imageUrl    String?
   images      PortfolioImage[]
   category    String? // Keep for legacy or manual override
@@ -38,7 +38,7 @@ model Message {
   email     String
   phone     String?  // Added phone number
   service   String
-  message   String  
+  message   String   @db.Text
   createdAt DateTime @default(now())
 }
 
@@ -55,16 +55,16 @@ model Service {
   imageUrl      String?
   titleTr       String
   titleEn       String
-  descriptionTr String  
-  descriptionEn String  
-  contentTr     String  
-  contentEn     String  
+  descriptionTr String   @db.Text
+  descriptionEn String   @db.Text
+  contentTr     String   @db.Text
+  contentEn     String   @db.Text
   
   // Portfolio Section on Service Detail Page
   servicePortfolioTitleEn String?
   servicePortfolioTitleTr String?
-  servicePortfolioDescEn  String?
-  servicePortfolioDescTr  String?
+  servicePortfolioDescEn  String? @db.Text
+  servicePortfolioDescTr  String? @db.Text
   
   portfolioItems PortfolioItem[]
 
@@ -81,8 +81,8 @@ model SiteSettings {
   address        String
   contactTitleTr String
   contactTitleEn String
-  contactDescTr  String  
-  contactDescEn  String  
+  contactDescTr  String   @db.Text
+  contactDescEn  String   @db.Text
   
   // Hero Section
   heroTitleTr    String
@@ -93,22 +93,22 @@ model SiteSettings {
   // About Section
   aboutTitleTr   String
   aboutTitleEn   String
-  aboutDescTr    String  
-  aboutDescEn    String  
+  aboutDescTr    String   @db.Text
+  aboutDescEn    String   @db.Text
   aboutSectionTitleEn String? // "Our Philosophy"
   aboutSectionTitleTr String?
 
   // Contact Section (Let's Build...)
-  contactMainTitleEn String?
-  contactMainTitleTr String?
+  contactMainTitleEn String?  @db.Text
+  contactMainTitleTr String?  @db.Text
 
   // Portfolio Section (Homepage)
   portfolioTitleEn    String? // "Our Portfolio"
   portfolioTitleTr    String?
   portfolioSubtitleEn String? // "Selected Works"
   portfolioSubtitleTr String?
-  portfolioDescEn     String? // "Each project..."
-  portfolioDescTr     String?
+  portfolioDescEn     String? @db.Text // "Each project..."
+  portfolioDescTr     String? @db.Text
 
   // Footer
   footerRightsTr String
