@@ -1,14 +1,14 @@
 export const MOCK_SERVICES = [
-    {
-        id: 1,
-        slug: 'anahtar-teslim-insaat',
-        icon: 'Building',
-        imageUrl: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=1200',
-        titleEn: 'Turnkey Construction',
-        titleTr: 'Anahtar Teslim İnşaat',
-        descriptionEn: 'Complete construction solutions from ground breaking to final delivery. We handle everything with precision and expertise.',
-        descriptionTr: 'Projelendirmeden iskana kadar tüm inşaat süreçlerini kapsayan, stres yönetimini sıfıra indiren profesyonel anahtar teslim çözümler.',
-        contentEn: `
+  {
+    id: 1,
+    slug: 'anahtar-teslim-insaat',
+    icon: 'Building',
+    imageUrl: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=1200',
+    titleEn: 'Turnkey Construction',
+    titleTr: 'Anahtar Teslim İnşaat',
+    descriptionEn: 'Complete construction solutions from ground breaking to final delivery. We handle everything with precision and expertise.',
+    descriptionTr: 'Projelendirmeden iskana kadar tüm inşaat süreçlerini kapsayan, stres yönetimini sıfıra indiren profesyonel anahtar teslim çözümler.',
+    contentEn: `
     <div class="space-y-8">
       <div>
         <h3 class="text-2xl font-bold mb-4">Comprehensive Solutions Building the Future</h3>
@@ -37,7 +37,7 @@ export const MOCK_SERVICES = [
       </div>
     </div>
     `,
-        contentTr: `
+    contentTr: `
     <div class="space-y-8">
       <div>
         <h3 class="text-2xl font-bold mb-4">Geleceği İnşa Eden Kapsamlı Çözümler</h3>
@@ -66,17 +66,21 @@ export const MOCK_SERVICES = [
       </div>
     </div>
     `,
-    },
-    {
-        id: 2,
-        slug: 'mimari-tasarim',
-        icon: 'DraftingCompass',
-        imageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200',
-        titleEn: 'Architectural Design',
-        titleTr: 'Mimari Tasarım & Proje',
-        descriptionEn: 'Innovative and functional architectural designs that bring your vision to life.',
-        descriptionTr: 'Fonksiyonelliği estetikle buluşturan, yaşam kalitenizi artıran vizyoner mimari ve iç mimari tasarım hizmetleri.',
-        contentEn: `
+    servicePortfolioTitleEn: null,
+    servicePortfolioTitleTr: null,
+    servicePortfolioDescEn: null,
+    servicePortfolioDescTr: null,
+  },
+  {
+    id: 2,
+    slug: 'mimari-tasarim',
+    icon: 'DraftingCompass',
+    imageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200',
+    titleEn: 'Architectural Design',
+    titleTr: 'Mimari Tasarım & Proje',
+    descriptionEn: 'Innovative and functional architectural designs that bring your vision to life.',
+    descriptionTr: 'Fonksiyonelliği estetikle buluşturan, yaşam kalitenizi artıran vizyoner mimari ve iç mimari tasarım hizmetleri.',
+    contentEn: `
     <div class="space-y-8">
       <div>
         <h3 class="text-2xl font-bold mb-4">Designs Shaping Life</h3>
@@ -104,7 +108,7 @@ export const MOCK_SERVICES = [
       </div>
     </div>
     `,
-        contentTr: `
+    contentTr: `
     <div class="space-y-8">
       <div>
         <h3 class="text-2xl font-bold mb-4">Yaşamı Şekillendiren Tasarımlar</h3>
@@ -132,17 +136,21 @@ export const MOCK_SERVICES = [
       </div>
     </div>
     `,
-    },
-    {
-        id: 3,
-        slug: 'insaat-muhendisligi-statik',
-        icon: 'Layers',
-        imageUrl: '/kırım/524-342-projelendirme-ve-uygulamasi.webp',
-        titleEn: 'Structural Engineering',
-        titleTr: 'İnşaat Mühendisliği & Statik',
-        descriptionEn: 'Advanced structural analysis and seismic resistant design ensuring safety and longevity.',
-        descriptionTr: 'Deprem yönetmeliklerine tam uyumlu, güvenli ve ekonomik statik proje çözümleri ve mühendislik hizmetleri.',
-        contentEn: `
+    servicePortfolioTitleEn: null,
+    servicePortfolioTitleTr: null,
+    servicePortfolioDescEn: null,
+    servicePortfolioDescTr: null,
+  },
+  {
+    id: 3,
+    slug: 'insaat-muhendisligi-statik',
+    icon: 'Layers',
+    imageUrl: '/kırım/524-342-projelendirme-ve-uygulamasi.webp',
+    titleEn: 'Structural Engineering',
+    titleTr: 'İnşaat Mühendisliği & Statik',
+    descriptionEn: 'Advanced structural analysis and seismic resistant design ensuring safety and longevity.',
+    descriptionTr: 'Deprem yönetmeliklerine tam uyumlu, güvenli ve ekonomik statik proje çözümleri ve mühendislik hizmetleri.',
+    contentEn: `
     <div class="space-y-8">
       <div>
         <h3 class="text-2xl font-bold mb-4">The Foundation of Safe Structures</h3>
@@ -173,7 +181,7 @@ export const MOCK_SERVICES = [
       </div>
     </div>
     `,
-        contentTr: `
+    contentTr: `
     <div class="space-y-8">
       <div>
         <h3 class="text-2xl font-bold mb-4">Güvenli Yapıların Temeli</h3>
@@ -204,17 +212,21 @@ export const MOCK_SERVICES = [
       </div>
     </div>
     `,
-    },
-    {
-        id: 4,
-        slug: 'kaba-ince-insaat',
-        icon: 'HardHat',
-        imageUrl: '/kırım/kaba-ince-insaat.avif',
-        titleEn: 'Rough & Fine Construction',
-        titleTr: 'Kaba ve İnce İnşaat',
-        descriptionEn: 'Expert execution of both structural frameworks and detailed interior finishes.',
-        descriptionTr: 'Betonarme karkastan en ince dekoratif detaylara kadar titiz işçilik ve kaliteli malzeme uygulaması.',
-        contentEn: `
+    servicePortfolioTitleEn: null,
+    servicePortfolioTitleTr: null,
+    servicePortfolioDescEn: null,
+    servicePortfolioDescTr: null,
+  },
+  {
+    id: 4,
+    slug: 'kaba-ince-insaat',
+    icon: 'HardHat',
+    imageUrl: '/kırım/kaba-ince-insaat.avif',
+    titleEn: 'Rough & Fine Construction',
+    titleTr: 'Kaba ve İnce İnşaat',
+    descriptionEn: 'Expert execution of both structural frameworks and detailed interior finishes.',
+    descriptionTr: 'Betonarme karkastan en ince dekoratif detaylara kadar titiz işçilik ve kaliteli malzeme uygulaması.',
+    contentEn: `
     <div class="space-y-8">
       <div>
         <h3 class="text-2xl font-bold mb-4">Quality from Foundation to Detail</h3>
@@ -237,7 +249,7 @@ export const MOCK_SERVICES = [
       </div>
     </div>
     `,
-        contentTr: `
+    contentTr: `
     <div class="space-y-8">
       <div>
         <h3 class="text-2xl font-bold mb-4">Temelden Detaya Kalite</h3>
@@ -261,17 +273,21 @@ export const MOCK_SERVICES = [
       </div>
     </div>
     `,
-    },
-    {
-        id: 5,
-        slug: 'altin-varak',
-        icon: 'Sparkle',
-        imageUrl: '/varak/indownloader.app_picture_0314695001767781435.jpg',
-        titleEn: 'Gold Leaf',
-        titleTr: 'Altın Varak',
-        descriptionEn: 'Exquisite gold leaf applications that add timeless elegance to any surface.',
-        descriptionTr: 'Mekanlarınıza asil bir dokunuş: Geleneksel işçiliğin modern tasarımla buluştuğu eşsiz altın varak uygulamaları.',
-        contentEn: `
+    servicePortfolioTitleEn: null,
+    servicePortfolioTitleTr: null,
+    servicePortfolioDescEn: null,
+    servicePortfolioDescTr: null,
+  },
+  {
+    id: 5,
+    slug: 'altin-varak',
+    icon: 'Sparkle',
+    imageUrl: '/varak/indownloader.app_picture_0314695001767781435.jpg',
+    titleEn: 'Gold Leaf',
+    titleTr: 'Altın Varak',
+    descriptionEn: 'Exquisite gold leaf applications that add timeless elegance to any surface.',
+    descriptionTr: 'Mekanlarınıza asil bir dokunuş: Geleneksel işçiliğin modern tasarımla buluştuğu eşsiz altın varak uygulamaları.',
+    contentEn: `
     <div class="space-y-8">
       <div>
         <h3 class="text-2xl font-bold mb-4">Gold Sparkle from Tradition to Future</h3>
@@ -314,7 +330,7 @@ export const MOCK_SERVICES = [
          </div>
       </div>
     </div>`,
-        contentTr: `
+    contentTr: `
     <div class="space-y-8">
       <div>
         <h3 class="text-2xl font-bold mb-4">Gelenekten Geleceğe Altın Işıltısı</h3>
@@ -356,18 +372,22 @@ export const MOCK_SERVICES = [
             </div>
          </div>
       </div>
-    </div>`
-    },
-    {
-        id: 6,
-        slug: 'kirim-yikim-isleri',
-        icon: 'Hammer',
-        imageUrl: '/kırım/krıım2.jpeg',
-        titleEn: 'Demolition Works',
-        titleTr: 'Kırım & Yıkım İşleri',
-        descriptionEn: 'Professional demolition, breaking, and debris removal services with safety first approach.',
-        descriptionTr: 'Yenilenme için yer açıyoruz: Kontrollü bina yıkımı, duvar kırma, şap sökümü ve hafriyat atım hizmetleri.',
-        contentEn: `
+    </div>`,
+    servicePortfolioTitleEn: "Gold Leaf Application",
+    servicePortfolioTitleTr: "Altın Varak Uygulamaları",
+    servicePortfolioDescEn: "Adding timeless elegance and value to your spaces with exquisite gold leaf artistry.",
+    servicePortfolioDescTr: "Mekanlarınıza zamansız zarafet ve değer katan eşsiz altın varak sanatı.",
+  },
+  {
+    id: 6,
+    slug: 'kirim-yikim-isleri',
+    icon: 'Hammer',
+    imageUrl: '/kırım/krıım2.jpeg',
+    titleEn: 'Demolition Works',
+    titleTr: 'Kırım & Yıkım İşleri',
+    descriptionEn: 'Professional demolition, breaking, and debris removal services with safety first approach.',
+    descriptionTr: 'Yenilenme için yer açıyoruz: Kontrollü bina yıkımı, duvar kırma, şap sökümü ve hafriyat atım hizmetleri.',
+    contentEn: `
     <div class="space-y-8">
       <div>
         <h3 class="text-2xl font-bold mb-4">Professional and Safe Demolition</h3>
@@ -402,7 +422,7 @@ export const MOCK_SERVICES = [
       </div>
     </div>
     `,
-        contentTr: `
+    contentTr: `
     <div class="space-y-8">
       <div>
         <h3 class="text-2xl font-bold mb-4">Profesyonel ve Güvenli Yıkım</h3>
@@ -436,43 +456,47 @@ export const MOCK_SERVICES = [
         </ul>
       </div>
     </div>
-    `
-    }
+    `,
+    servicePortfolioTitleEn: null,
+    servicePortfolioTitleTr: null,
+    servicePortfolioDescEn: null,
+    servicePortfolioDescTr: null,
+  }
 ];
 
 export const MOCK_SITE_SETTINGS = {
-    id: 1,
-    email: 'info@brnyapigroup.com',
-    phone: '+90 212 000 00 00',
-    phone2: '+90 (555) 000 00 00',
-    address: 'İstanbul, Türkiye',
-    contactTitleTr: 'İletişime Geçin',
-    contactTitleEn: 'Get in Touch',
-    contactDescTr: 'Projenize başlamaya hazır mısınız? Bugün bizimle iletişime geçin.',
-    contactDescEn: 'Ready to start?',
-    contactMainTitleTr: "<span class='text-[#D4AF37] italic font-bold'>Vizyoner</span> Mekanlar <br/> İnşa Edelim.",
-    contactMainTitleEn: "Let's Build visionary spaces.",
-    heroTitleTr: 'Geleceği İnşa Ediyoruz.',
-    heroTitleEn: 'Building the Future.',
-    heroSubtitleTr: 'Anahtar Teslim İnşaat Grubu.',
-    heroSubtitleEn: 'Construction Group.',
-    heroImageUrl: 'https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=2000',
-    aboutTitleTr: 'Kalite ve İnovasyon',
-    aboutTitleEn: 'Quality and Innovation',
-    aboutDescTr: 'BRN YAPI GROUP, inşaat sektöründe güven ve kalitenin adresidir.',
-    aboutDescEn: 'Leading construction group.',
-    aboutSectionTitleTr: 'Vizyonumuz',
-    aboutSectionTitleEn: 'Our Vision',
-    portfolioTitleTr: 'Projelerimiz',
-    portfolioTitleEn: 'Projects',
-    portfolioSubtitleTr: 'Son Çalışmalar',
-    portfolioSubtitleEn: 'Recent Works',
-    portfolioDescTr: 'Kaliteye olan bağlılığımızı sergiliyoruz.',
-    portfolioDescEn: 'Showcasing our dedication.',
-    footerRightsTr: 'Tüm hakları saklıdır.',
-    footerRightsEn: 'All rights reserved.',
-    instagram: 'https://www.instagram.com/brnyapigroup/',
-    linkedin: 'https://linkedin.com',
-    twitter: 'https://twitter.com',
-    facebook: 'https://facebook.com',
+  id: 1,
+  email: 'info@brnyapigroup.com',
+  phone: '+90 212 000 00 00',
+  phone2: '+90 (555) 000 00 00',
+  address: 'İstanbul, Türkiye',
+  contactTitleTr: 'İletişime Geçin',
+  contactTitleEn: 'Get in Touch',
+  contactDescTr: 'Projenize başlamaya hazır mısınız? Bugün bizimle iletişime geçin.',
+  contactDescEn: 'Ready to start?',
+  contactMainTitleTr: "<span class='text-[#D4AF37] italic font-bold'>Vizyoner</span> Mekanlar <br/> İnşa Edelim.",
+  contactMainTitleEn: "Let's Build visionary spaces.",
+  heroTitleTr: 'Geleceği İnşa Ediyoruz.',
+  heroTitleEn: 'Building the Future.',
+  heroSubtitleTr: 'Anahtar Teslim İnşaat Grubu.',
+  heroSubtitleEn: 'Construction Group.',
+  heroImageUrl: 'https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=2000',
+  aboutTitleTr: 'Kalite ve İnovasyon',
+  aboutTitleEn: 'Quality and Innovation',
+  aboutDescTr: 'BRN YAPI GROUP, inşaat sektöründe güven ve kalitenin adresidir.',
+  aboutDescEn: 'Leading construction group.',
+  aboutSectionTitleTr: 'Vizyonumuz',
+  aboutSectionTitleEn: 'Our Vision',
+  portfolioTitleTr: 'Projelerimiz',
+  portfolioTitleEn: 'Projects',
+  portfolioSubtitleTr: 'Son Çalışmalar',
+  portfolioSubtitleEn: 'Recent Works',
+  portfolioDescTr: 'Kaliteye olan bağlılığımızı sergiliyoruz.',
+  portfolioDescEn: 'Showcasing our dedication.',
+  footerRightsTr: 'Tüm hakları saklıdır.',
+  footerRightsEn: 'All rights reserved.',
+  instagram: 'https://www.instagram.com/brnyapigroup/',
+  linkedin: 'https://linkedin.com',
+  twitter: 'https://twitter.com',
+  facebook: 'https://facebook.com',
 };
