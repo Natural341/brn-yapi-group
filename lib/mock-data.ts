@@ -467,9 +467,9 @@ export const MOCK_SERVICES = [
 export const MOCK_SITE_SETTINGS = {
   id: 1,
   email: 'info@brnyapigroup.com',
-  phone: '+90 212 000 00 00',
-  phone2: '+90 (555) 000 00 00',
-  address: 'İstanbul, Türkiye',
+  phone: '0539 962 6701',
+  phone2: '0537 432 1732',
+  address: 'Gülbahar Cd. 11–21 34381 Şişli İstanbul Türkiye',
   contactTitleTr: 'İletişime Geçin',
   contactTitleEn: 'Get in Touch',
   contactDescTr: 'Projenize başlamaya hazır mısınız? Bugün bizimle iletişime geçin.',
