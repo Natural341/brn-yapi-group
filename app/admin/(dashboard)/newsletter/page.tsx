@@ -1,5 +1,4 @@
 import React from 'react';
-import { prisma } from '@/lib/prisma';
 import { deleteSubscriber, subscribeNewsletter } from '@/app/newsletter/actions';
 
 export const dynamic = 'force-dynamic';
@@ -10,9 +9,8 @@ async function handleManualSubscribe(formData: FormData) {
 }
 
 export default async function AdminNewsletterPage() {
-  const subscribers = await prisma.newsletter.findMany({
-    orderBy: { createdAt: 'desc' },
-  });
+  // Mock - veritabanı olmadan boş array
+  const subscribers: any[] = [];
 
   return (
     <div className="p-8">

@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { prisma } from '@/lib/prisma'
+import { getPortfolioItemsForSitemap } from '@/lib/data-provider'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'
@@ -8,7 +8,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = [
     '',
     '/portfolio',
-    // Add other static routes if necessary (e.g. /about if it's a separate page, but currently it's a section on home)
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
@@ -17,10 +16,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }))
 
   // Dynamic Portfolio Items
-  const portfolioItems = await prisma.portfolioItem.findMany({
-    select: { id: true, updatedAt: true },
-  })
-  
+  const portfolioItems = await getPortfolioItemsForSitemap()
+
   const portfolioRoutes = portfolioItems.map((item) => ({
     url: `${baseUrl}/portfolio/${item.id}`,
     lastModified: item.updatedAt,

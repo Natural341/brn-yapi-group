@@ -1,9 +1,11 @@
 import React from 'react';
-import { prisma } from '@/lib/prisma';
+import { getServices } from '@/lib/data-provider';
 import NewProjectForm from './NewProjectForm';
 
-export default async function NewProjectPage() {
-  const services = await prisma.service.findMany();
+export const dynamic = 'force-dynamic';
 
-  return <NewProjectForm services={services} />;
+export default async function NewProjectPage() {
+  const services = await getServices();
+
+  return <NewProjectForm services={services as any} />;
 }

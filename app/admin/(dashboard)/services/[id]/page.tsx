@@ -1,8 +1,10 @@
 import React from 'react';
-import { prisma } from '@/lib/prisma';
+import { getServices } from '@/lib/data-provider';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import EditServiceForm from './EditServiceForm';
+
+export const dynamic = 'force-dynamic';
 
 export default async function EditServicePage({ params }: { params: { id: string } }) {
   const { id } = await params;
@@ -12,9 +14,8 @@ export default async function EditServicePage({ params }: { params: { id: string
     notFound();
   }
 
-  const service = await prisma.service.findUnique({
-    where: { id: serviceId },
-  });
+  const services = await getServices();
+  const service = services.find((s: any) => s.id === serviceId);
 
   if (!service) {
     notFound();

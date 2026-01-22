@@ -1,18 +1,13 @@
 import React from 'react';
-import { prisma } from '@/lib/prisma';
+import { getPortfolioItems, getSiteSettings, getServices } from '@/lib/data-provider';
 import PortfolioClient from './PortfolioClient';
 
-export const dynamic = 'force-dynamic';
-
 const PortfolioPage = async () => {
-  const items = await prisma.portfolioItem.findMany({
-    orderBy: { createdAt: 'desc' }
-  });
+  const items = await getPortfolioItems();
+  const siteSettings = await getSiteSettings();
+  const services = await getServices();
 
-  const siteSettings = await prisma.siteSettings.findFirst();
-  const services = await prisma.service.findMany({ orderBy: { id: 'asc' } });
-
-  return <PortfolioClient initialItems={items} siteSettings={siteSettings ?? undefined} services={services} />;
+  return <PortfolioClient initialItems={items as any} siteSettings={siteSettings ?? undefined} services={services as any} />;
 };
 
 export default PortfolioPage;

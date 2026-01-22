@@ -1,10 +1,12 @@
 import React from 'react';
-import { prisma } from '@/lib/prisma';
+import { getServices } from '@/lib/data-provider';
 import Link from 'next/link';
 import { deleteService } from '../../actions';
 
+export const dynamic = 'force-dynamic';
+
 export default async function AdminServicesPage() {
-  const services = await prisma.service.findMany();
+  const services = await getServices();
 
   return (
     <div className="p-8">

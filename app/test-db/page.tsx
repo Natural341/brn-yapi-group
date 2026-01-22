@@ -1,40 +1,16 @@
-import { PrismaClient } from '@prisma/client';
-
 export const dynamic = 'force-dynamic';
 
 export default async function TestDbPage() {
-    let status = 'Unknown';
+    let status = 'Mock Mode (No Database)';
     let error = null;
-    let counts = {};
+    let counts = {
+        services: 6,
+        settings: 1,
+    };
 
-    // Create a local instance to avoid global import issues
-    const prisma = new PrismaClient({
-        datasources: {
-            db: {
-                url: process.env.DATABASE_URL,
-            },
-        },
-    });
-
-    try {
-        // Explicitly connect first
-        await prisma.$connect();
-        status = 'Connected (Local Instance)';
-
-        // Count items
-        const serviceCount = await prisma.service.count();
-        const settingsCount = await prisma.siteSettings.count();
-
-        counts = {
-            services: serviceCount,
-            settings: settingsCount,
-        };
-    } catch (e: any) {
-        status = 'Failed';
-        error = e.message + (e.code ? ` (${e.code})` : '') + '\n' + (e.meta ? JSON.stringify(e.meta) : '');
-        console.error('Test DB Error:', e);
-    } finally {
-        await prisma.$disconnect();
+    // Veritabanı bağlantısı yok - mock mode
+    if (!process.env.DATABASE_URL) {
+        status = 'Mock Mode - DATABASE_URL not set';
     }
 
     return (

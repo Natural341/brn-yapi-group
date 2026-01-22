@@ -1,12 +1,13 @@
 import React from 'react';
-import { prisma } from '@/lib/prisma';
+import { getPortfolioItems } from '@/lib/data-provider';
 import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 
 export default async function AdminDashboard() {
-  const projectCount = await prisma.portfolioItem.count();
-  const messageCount = await prisma.message.count();
+  const items = await getPortfolioItems();
+  const projectCount = items.length;
+  const messageCount = 0; // Mock - veritabanı olmadan mesaj yok
 
   return (
     <div>

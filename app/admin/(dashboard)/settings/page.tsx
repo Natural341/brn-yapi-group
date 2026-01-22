@@ -1,10 +1,12 @@
 import React from 'react';
-import { prisma } from '@/lib/prisma';
+import { getSiteSettings } from '@/lib/data-provider';
 import SettingsForm from './SettingsForm';
+
+export const dynamic = 'force-dynamic';
 
 export default async function AdminSettingsPage() {
   try {
-    const settings = await prisma.siteSettings.findFirst();
+    const settings = await getSiteSettings();
 
     if (!settings) {
       return <div className="p-8">Settings not found. Please run seed.</div>;

@@ -1,14 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import { prisma } from '@/lib/prisma';
+import { getPortfolioItems } from '@/lib/data-provider';
 import DeleteButton from './DeleteButton';
 
 export const dynamic = 'force-dynamic';
 
 export default async function AdminPortfolioPage() {
-  const items = await prisma.portfolioItem.findMany({
-    orderBy: { createdAt: 'desc' }
-  });
+  const items = await getPortfolioItems() as any[];
 
   return (
     <div>

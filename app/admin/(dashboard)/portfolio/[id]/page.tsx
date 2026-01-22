@@ -1,7 +1,9 @@
 import React from 'react';
-import { prisma } from '@/lib/prisma';
+import { getPortfolioItem, getServices } from '@/lib/data-provider';
 import { notFound } from 'next/navigation';
 import EditProjectForm from './EditProjectForm';
+
+export const dynamic = 'force-dynamic';
 
 export default async function EditPortfolioPage({ params }: { params: { id: string } }) {
   const { id } = await params;
@@ -11,20 +13,17 @@ export default async function EditPortfolioPage({ params }: { params: { id: stri
     notFound();
   }
 
-  const project = await prisma.portfolioItem.findUnique({
-    where: { id: projectId },
-    include: { images: true }
-  });
+  const project = await getPortfolioItem(projectId);
 
   if (!project) {
     notFound();
   }
 
-  const services = await prisma.service.findMany();
+  const services = await getServices();
 
   return (
     <div className="p-8">
-      <EditProjectForm project={project} services={services} />
+      <EditProjectForm project={project as any} services={services as any} />
     </div>
   );
 }

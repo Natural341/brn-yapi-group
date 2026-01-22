@@ -1,6 +1,6 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import { prisma } from '@/lib/prisma';
+import { getPortfolioItem, getSiteSettings, getServices } from '@/lib/data-provider';
 import ProjectClient from './ProjectClient';
 
 interface PageProps {
@@ -15,19 +15,16 @@ const ProjectDetailPage = async ({ params }: PageProps) => {
     notFound();
   }
 
-  const project = await prisma.portfolioItem.findUnique({
-    where: { id: projectId },
-    include: { images: true }
-  });
+  const project = await getPortfolioItem(projectId);
 
   if (!project) {
     notFound();
   }
 
-  const siteSettings = await prisma.siteSettings.findFirst();
-  const services = await prisma.service.findMany({ orderBy: { id: 'asc' } });
+  const siteSettings = await getSiteSettings();
+  const services = await getServices();
 
-  return <ProjectClient project={project} siteSettings={siteSettings ?? undefined} services={services} />;
+  return <ProjectClient project={project as any} siteSettings={siteSettings ?? undefined} services={services as any} />;
 };
 
 export default ProjectDetailPage;

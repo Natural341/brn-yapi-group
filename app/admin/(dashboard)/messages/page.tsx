@@ -1,13 +1,11 @@
 import React from 'react';
-import { prisma } from '@/lib/prisma';
 import MessageActions from './MessageActions';
 
 export const dynamic = 'force-dynamic';
 
 export default async function AdminMessagesPage() {
-  const messages = await prisma.message.findMany({
-    orderBy: { createdAt: 'desc' },
-  });
+  // Mock - veritabanı olmadan boş array
+  const messages: any[] = [];
 
   return (
     <div>

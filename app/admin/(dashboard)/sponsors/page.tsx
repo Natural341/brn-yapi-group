@@ -1,14 +1,12 @@
 import React from 'react';
-import { prisma } from '@/lib/prisma';
 import SponsorList from './SponsorList';
 import AddSponsorForm from './AddSponsorForm';
 
 export const dynamic = 'force-dynamic';
 
 export default async function AdminSponsorsPage() {
-    const sponsors = await prisma.sponsor.findMany({
-        orderBy: { createdAt: 'desc' }
-    });
+    // Mock - veritabanı olmadan boş array
+    const sponsors: any[] = [];
 
     return (
         <div>
