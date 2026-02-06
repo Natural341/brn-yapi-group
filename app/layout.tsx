@@ -24,9 +24,10 @@ const cinzel = Cinzel({
 });
 
 export const metadata: Metadata = {
-  title: "BRN YAPI GRUP | İnşaat ve Mimarlık Mükemmelliği",
-  description: "BRN Yapı Grup, anahtar teslim inşaat, mimari tasarım, statik proje ve altın varak uygulamaları konusunda uzmanlaşmış profesyonel bir yapı grubudur. Türkiye genelinde kaliteli ve güvenilir inşaat hizmetleri sunuyoruz.",
-  keywords: ["inşaat", "mimarlık", "anahtar teslim", "yapı", "BRN Yapı", "altın varak", "statik proje", "İstanbul inşaat", "konut projeleri", "ticari inşaat"],
+  metadataBase: new URL("https://brnyapigroup.com"),
+  title: "BRN YAPI GRUP | Insaat ve Mimarlik Mukemmelligi",
+  description: "BRN Yapi Grup, anahtar teslim insaat, mimari tasarim, statik proje ve altin varak uygulamalari konusunda uzmanlasmis profesyonel bir yapi grubudur. Turkiye genelinde kaliteli ve guvenilir insaat hizmetleri sunuyoruz.",
+  keywords: ["insaat", "mimarlik", "anahtar teslim", "yapi", "BRN Yapi", "altin varak", "statik proje", "Istanbul insaat", "konut projeleri", "ticari insaat"],
   authors: [{ name: "BRN YAPI GRUP" }],
   creator: "BRN YAPI GRUP",
   publisher: "BRN YAPI GRUP",
@@ -36,8 +37,8 @@ export const metadata: Metadata = {
     locale: "tr_TR",
     url: "https://brnyapigroup.com",
     siteName: "BRN YAPI GRUP",
-    title: "BRN YAPI GRUP | İnşaat ve Mimarlık Mükemmelliği",
-    description: "Anahtar teslim inşaat, mimari tasarım ve altın varak uygulamalarında uzman ekibimizle hayallerinizdeki mekanları inşa ediyoruz.",
+    title: "BRN YAPI GRUP | Insaat ve Mimarlik Mukemmelligi",
+    description: "Anahtar teslim insaat, mimari tasarim ve altin varak uygulamalarinda uzman ekibimizle hayallerinizdeki mekanlari insa ediyoruz.",
     images: [
       {
         url: "/logo.jpeg",
@@ -49,8 +50,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "BRN YAPI GRUP | İnşaat ve Mimarlık",
-    description: "Anahtar teslim inşaat, mimari tasarım ve profesyonel yapı çözümleri.",
+    title: "BRN YAPI GRUP | Insaat ve Mimarlik",
+    description: "Anahtar teslim insaat, mimari tasarim ve profesyonel yapi cozumleri.",
     images: ["/logo.jpeg"],
   },
   icons: {

@@ -59,7 +59,7 @@ const Footer: React.FC<{ siteSettings?: SiteSettings; services?: Service[] }> = 
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-10 mb-20">
 
           {/* Column 1: Brand - Increased padding to move it lower */}
           <div className="space-y-8 lg:pt-16">
@@ -123,7 +123,32 @@ const Footer: React.FC<{ siteSettings?: SiteSettings; services?: Service[] }> = 
             </ul>
           </div>
 
-          {/* Column 3: Services */}
+          {/* Column 3: References */}
+          <div className="pt-0 lg:pt-24">
+            <h4 className="text-white font-serif font-bold text-lg mb-8 relative inline-block">
+              {lang === 'tr' ? 'Referanslarimiz' : 'Our References'}
+              <span className="absolute -bottom-2 left-0 w-12 h-[2px] bg-[#D4AF37]"></span>
+            </h4>
+            <ul className="space-y-4 text-sm">
+              <li>
+                <a href="/projects/hafiz-mustafa" className="text-white/60 hover:text-[#D4AF37] transition-colors font-medium">
+                  Hafiz Mustafa
+                </a>
+                <p className="text-white/40 text-xs mt-1">Taksim, Beyazit, Bahcekapi, Aqua Florya</p>
+              </li>
+              <li>
+                <a href="/projects/edebiyat-fakultesi" className="text-white/60 hover:text-[#D4AF37] transition-colors font-medium">
+                  Edebiyat Fakultesi
+                </a>
+                <p className="text-white/40 text-xs mt-1">Istanbul Universitesi</p>
+              </li>
+              <li className="pt-2">
+                <span className="text-white/40 text-xs">+ CVK Otel, Four Seasons Hotel</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: Services */}
           <div className="pt-0 lg:pt-24">
             <h4 className="text-white font-serif font-bold text-lg mb-8 relative inline-block">
               {t.services[lang]}

@@ -1,12 +1,14 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import { getPortfolioItem, getSiteSettings, getServices } from '@/lib/data-provider';
 import ProjectClient from './ProjectClient';
+import { MOCK_SERVICES, MOCK_SITE_SETTINGS } from '@/lib/mock-data';
 
 interface PageProps {
   params: Promise<{ id: string }>;
 }
 
+// No portfolio items in mock data, so this page will always show notFound
+// This is intentional as portfolio feature is not currently active
 const ProjectDetailPage = async ({ params }: PageProps) => {
   const { id } = await params;
   const projectId = parseInt(id, 10);
@@ -15,16 +17,8 @@ const ProjectDetailPage = async ({ params }: PageProps) => {
     notFound();
   }
 
-  const project = await getPortfolioItem(projectId);
-
-  if (!project) {
-    notFound();
-  }
-
-  const siteSettings = await getSiteSettings();
-  const services = await getServices();
-
-  return <ProjectClient project={project as any} siteSettings={siteSettings ?? undefined} services={services as any} />;
+  // No mock portfolio items, always show not found
+  notFound();
 };
 
 export default ProjectDetailPage;

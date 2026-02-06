@@ -1,8 +1,8 @@
 import { MetadataRoute } from 'next'
-import { getPortfolioItemsForSitemap } from '@/lib/data-provider'
+import { MOCK_SERVICES } from '@/lib/mock-data'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'
+  const baseUrl = process.env.NEXT_PUBLIC_URL || 'https://brnyapigroup.com'
 
   // Static pages
   const staticRoutes = [
@@ -15,15 +15,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 1.0,
   }))
 
-  // Dynamic Portfolio Items
-  const portfolioItems = await getPortfolioItemsForSitemap()
-
-  const portfolioRoutes = portfolioItems.map((item) => ({
-    url: `${baseUrl}/portfolio/${item.id}`,
-    lastModified: item.updatedAt,
+  // Service pages from mock data
+  const serviceRoutes = MOCK_SERVICES.map((service) => ({
+    url: `${baseUrl}/services/${service.slug}`,
+    lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.8,
   }))
 
-  return [...staticRoutes, ...portfolioRoutes]
+  // Project pages
+  const projectRoutes = [
+    { url: `${baseUrl}/projects/hafiz-mustafa`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 },
+    { url: `${baseUrl}/projects/edebiyat-fakultesi`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 },
+  ]
+
+  return [...staticRoutes, ...serviceRoutes, ...projectRoutes]
 }
