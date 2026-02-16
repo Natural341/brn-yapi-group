@@ -54,11 +54,7 @@ export const metadata: Metadata = {
     description: "Anahtar teslim insaat, mimari tasarim ve profesyonel yapi cozumleri.",
     images: ["/logo.jpeg"],
   },
-  icons: {
-    icon: "/logo.jpeg",
-    shortcut: "/logo.jpeg",
-    apple: "/logo.jpeg",
-  },
+
 };
 
 export default function RootLayout({
